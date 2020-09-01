@@ -3,7 +3,13 @@ import React, { useState } from 'react';
 import './App.css';
 import Person from './Person/Person';
 
-// Using useState approach when not extending Component
+/**
+ * Using useState approach when not extending Component
+ * This is a stateful component since it uses useState
+ *
+ * @param props
+ * @returns {JSX.Element}
+ */
 const app = props => {
     const [personsState, setPersonsState] = useState({
         persons: [
