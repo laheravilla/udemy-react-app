@@ -11,8 +11,14 @@ class App extends Component {
     ]
   }
 
+  // React will override property state with setState() data
   switchNameHandler = () => {
-    console.log('Was clicked!');
+    this.setState({persons: [
+            { name: 'Yurniel  Lahera Villa', age: 39 },
+            { name: 'Emi Lahera Villa', age: 39 },
+            { name: 'Gabriel Lahera Villa', age: 3 }
+        ]
+    });
   }
 
   render() {
