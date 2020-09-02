@@ -15,14 +15,6 @@ class App extends Component {
     }
 
     // React will override property state with setState() data
-    switchNameHandler = (newName) => {
-        this.setState({persons: [
-                { name: newName, age: 39 },
-                { name: 'Emi Lahera Villa', age: 39 },
-                { name: 'Gabriel Lahera Villa', age: 3 }
-            ]
-        });
-    }
 
     nameChangedHandler = Event => {
         this.setState({
@@ -32,6 +24,12 @@ class App extends Component {
                 { name: 'Gabriel', age: 3 }
             ]
         })
+    }
+
+    deletePersonHandler = (personIndex) => {
+        const persons = this.state.persons;
+        persons.splice(personIndex, 1);
+        this.setState({persons: persons});
     }
 
     /*
@@ -57,8 +55,13 @@ class App extends Component {
         if (this.state.showPersons) {
             persons = (
                 <div>
-                    {this.state.persons.map(person => {
-                        return (<Person name={person.name} age={person.age} />)
+                    {this.state.persons.map((person, i) => {
+                        return (
+                            <Person
+                                name={person.name}
+                                age={person.age}
+                                click={this.deletePersonHandler.bind(this, i)} />
+                            )
                     })}
                 </div>
             );
