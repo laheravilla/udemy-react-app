@@ -16,14 +16,20 @@ class App extends Component {
 
     // React will override property state with setState() data
 
-    nameChangedHandler = Event => {
-        this.setState({
-            persons: [
-                { name: 'Yurniel', age: 39 },
-                { name: Event.target.value, age: 39 },
-                { name: 'Gabriel', age: 3 }
-            ]
-        })
+    nameChangedHandler = (Event, id) => {
+        const personIndex = this.state.persons.findIndex(p => p.id === id);
+
+        // Create a copy
+        const person = {...this.state.persons[personIndex]};
+        // = const person = Object.assign({}, this.state.persons[personIndex])
+
+        person.name = Event.target.value;
+
+        // Update array persons
+        const persons = [...this.state.persons];
+        persons[personIndex] = person;
+
+        this.setState({persons: persons})
     }
 
     deletePersonHandler = (personIndex) => {
@@ -63,6 +69,7 @@ class App extends Component {
                                 age={person.age}
                                 click={this.deletePersonHandler.bind(this, index)}
                                 key={person.id}
+                                changed={(Event) => this.nameChangedHandler(Event, person.id)}
                             />
                             )
                     })}
