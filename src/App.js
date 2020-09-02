@@ -7,9 +7,9 @@ class App extends Component {
     // Only available when having extended Component
     state = {
         persons: [
-            { name: 'Yurniel', age: 39 },
-            { name: 'Emi', age: 39 },
-            { name: 'Gabriel', age: 3 }
+            { id: 1, name: 'Yurniel', age: 39 },
+            { id: 2, name: 'Emi', age: 39 },
+            { id: 3, name: 'Gabriel', age: 3 }
         ],
         showPersons: false
     }
@@ -56,12 +56,14 @@ class App extends Component {
         if (this.state.showPersons) {
             persons = (
                 <div>
-                    {this.state.persons.map((person, i) => {
+                    {this.state.persons.map((person, index) => {
                         return (
                             <Person
                                 name={person.name}
                                 age={person.age}
-                                click={this.deletePersonHandler.bind(this, i)} />
+                                click={this.deletePersonHandler.bind(this, index)}
+                                key={person.id}
+                            />
                             )
                     })}
                 </div>
