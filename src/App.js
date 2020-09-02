@@ -10,7 +10,8 @@ class App extends Component {
             { name: 'Yurniel', age: 39 },
             { name: 'Emi', age: 39 },
             { name: 'Gabriel', age: 3 }
-        ]
+        ],
+        showPersons: false
     }
 
     // React will override property state with setState() data
@@ -33,6 +34,15 @@ class App extends Component {
         })
     }
 
+    /*
+    * In arrow functions THIS refers to the current class (or module),
+    * whereas in not-arrow functions THIS refers to the scope of the function
+    */
+    togglePersonsHandler = () => {
+        const doesShow = this.state.showPersons;
+        this.setState({showPersons: !doesShow});
+    }
+
     render() {
         const inlineStyle = {
             backgroundColor: "white",
@@ -48,21 +58,28 @@ class App extends Component {
                 {/*Ways of passing params to switchNameHandler(). Use .bind() as recommended way!*/}
                 <button
                     style={inlineStyle}
-                    onClick={this.switchNameHandler.bind(this, 'Yurniel Lahera')}>Switch Name
+                    onClick={this.togglePersonsHandler}>Switch Name
                 </button>
                 {/*<button onClick={() => this.switchNameHandler('Yurniel!!')}>Switch Name</button>*/}
-                <Person
-                    name={this.state.persons[0].name}
-                    age={this.state.persons[0].age} />
-                <Person
-                    name={this.state.persons[1].name}
-                    age={this.state.persons[1].age}
-                    click={this.switchNameHandler.bind(this, 'Yurniel!')}
-                    changed={this.nameChangedHandler}
-                >My hobbies: traveling</Person>
-                <Person
-                    name={this.state.persons[2].name}
-                    age={this.state.persons[2].age} />
+                {
+                    this.state.showPersons ?
+                        <div>
+                            <Person
+                                name={this.state.persons[0].name}
+                                age={this.state.persons[0].age} />
+                            <Person
+                                name={this.state.persons[1].name}
+                                age={this.state.persons[1].age}
+                                click={this.switchNameHandler.bind(this, 'Yurniel!')}
+                                changed={this.nameChangedHandler}
+                            >My hobbies: traveling</Person>
+                            <Person
+                                name={this.state.persons[2].name}
+                                age={this.state.persons[2].age} />
+                        </div>
+                        : null
+                }
+
             </div>
         );
     }
