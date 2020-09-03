@@ -50,11 +50,12 @@ class App extends Component {
 
     render() {
         const inlineStyle = {
-            backgroundColor: "white",
+            backgroundColor: "green",
             font: "inherit",
             border: "1px solid blue",
             padding: "8px",
-            cursor: "pointer"
+            cursor: "pointer",
+            color: "white"
         };
 
         let persons = null;
@@ -75,6 +76,9 @@ class App extends Component {
                     })}
                 </div>
             );
+
+            // Change style dynamically by accessing to inlineStyle object
+            inlineStyle.backgroundColor = "red";
         }
 
         return (
