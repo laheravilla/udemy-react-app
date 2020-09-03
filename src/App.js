@@ -81,9 +81,19 @@ class App extends Component {
             inlineStyle.backgroundColor = "red";
         }
 
+        let classes = [];
+        if (this.state.persons.length <= 2) {
+            classes.push('red'); // classes = ['red']
+        }
+
+        if (this.state.persons.length <= 1) {
+            classes.push('bold'); // classes = ['red', 'bold']
+        }
+
         return (
             <div className="App">
                 <h1>Hi, I'm a React App!</h1>
+                <p className={classes.join(' ')}>This is really working!</p>
                 {/*Ways of passing params to switchNameHandler(). Use .bind() as recommended way!*/}
                 <button
                     style={inlineStyle}
