@@ -11,8 +11,15 @@ import Radium from 'radium';
  * @returns {JSX.Element}
  */
 const person = (props) => {
+    const style = {
+        "@media (min-width: 500px)": {
+            width: "60%",
+            margin: "30px auto"
+        }
+    };
+
     return (
-        <div className="Person">
+        <div className="Person" style={style}>
             <p onClick={props.click}>I'm a {props.name} and I am {props.age} years old!</p>
             <p>{props.children}</p>
             <input type="text" value={props.name} onChange={props.changed}/>
