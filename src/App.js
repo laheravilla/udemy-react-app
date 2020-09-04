@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import React, { useState } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import Radium from 'radium';
 
 class App extends Component {
     // Only available when having extended Component
@@ -52,10 +53,14 @@ class App extends Component {
         const inlineStyle = {
             backgroundColor: "green",
             font: "inherit",
-            border: "1px solid blue",
+            border: "none",
             padding: "8px",
             cursor: "pointer",
-            color: "white"
+            color: "white",
+            ":hover": {
+                backgroundColor: "lightgreen",
+                color: "black"
+            }
         };
 
         let persons = null;
@@ -79,6 +84,10 @@ class App extends Component {
 
             // Change style dynamically by accessing to inlineStyle object
             inlineStyle.backgroundColor = "red";
+            inlineStyle[':hover'] = {
+                backgroundColor: "lightcoral",
+                    color: "black"
+            };
         }
 
         let classes = [];
@@ -106,7 +115,7 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Radium(App);
 
 /**
  * Using useState approach when not extending Component
