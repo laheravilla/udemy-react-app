@@ -7,6 +7,20 @@
 .red { color: red; }
 .bold { font-weight: bold; }
 
-button:hover {
-
+.App button {
+    background-color: green;
+    font: inherit;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: white;
 }
+
+.App button:hover {
+    background-color: lightgreen;
+    color: black;
+}
+
+.App button.Red { background-color: red; }
+
+.App button.Red:hover { background-color: salmon; }

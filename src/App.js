@@ -1,21 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+import styleClasses from './App.css';
 import Person from './Person/Person';
-import Radium, { StyleRoot } from 'radium';
-import styled from 'styled-components';
-
-const StyledBtn = styled.button`
-    background-color: ${props => props.alt ? 'red' : 'green'};
-    font: inherit;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-    color: white;
-    &:hover {
-        background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-        color: black;
-    }
-`;
 
 class App extends Component {
     // Only available when having extended Component
@@ -64,6 +49,7 @@ class App extends Component {
 
     render() {
         let persons = null;
+        let btnClasses = "";
 
         if (this.state.showPersons) {
             persons = (
@@ -81,32 +67,28 @@ class App extends Component {
                     })}
                 </div>
             );
+
+            btnClasses = styleClasses.Red;
         }
 
         let classes = [];
         if (this.state.persons.length <= 2) {
-            classes.push('red'); // classes = ['red']
+            classes.push(styleClasses.red); // classes = ['red']
         }
 
         if (this.state.persons.length <= 1) {
-            classes.push('bold'); // classes = ['red', 'bold']
+            classes.push(styleClasses.bold); // classes = ['red', 'bold']
         }
 
         return (
-            <StyleRoot>
-                <div className="App">
-                    <h1>Hi, I'm a React App!</h1>
-                    <p className={classes.join(' ')}>This is really working!</p>
-                    <StyledBtn
-                        alt={this.state.showPersons}
-                        onClick={this.togglePersonsHandler}
-                    >Switch Name
-                    </StyledBtn>
-                    {persons}
-                </div>
-            </StyleRoot>
+            <div className={styleClasses.App}>
+                <h1>Hi, I'm a React App!</h1>
+                <p className={classes.join(' ')}>This is really working!</p>
+                <button className={btnClasses} onClick={this.togglePersonsHandler}>Switch Name</button>
+                {persons}
+            </div>
         );
     }
 }
 
-export default Radium(App);
+export default App;
