@@ -1,15 +1,15 @@
-/*.Person {*/
-/*    width: 60%;*/
-/*    margin: 20px;*/
-/*    padding: 10px;*/
-/*    border: 1px solid #eee;*/
-/*    box-shadow: 0 2px 3px #ccc;*/
-/*    text-align: center;*/
-/*}*/
+.Person {
+    width: 60%;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    text-align: center;
+}
 
-/*@media (min-width: 500px) {*/
-/*    .Person {*/
-/*        width: 60%;*/
-/*        margin: 20px auto;*/
-/*    }*/
-/*}*/
+@media (min-width: 500px) {
+    .Person {
+        width: 60%;
+        margin: 20px auto;
+    }
+}
