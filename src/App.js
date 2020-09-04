@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
-// import React, { useState } from 'react';
 import './App.css';
 import Person from './Person/Person';
 import Radium, { StyleRoot } from 'radium';
+import styled from 'styled-components';
+
+const StyledBtn = styled.button`
+    background-color: ${props => props.alt ? 'red' : 'green'};
+    font: inherit;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: white;
+    &:hover {
+        background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+        color: black;
+    }
+`;
 
 class App extends Component {
     // Only available when having extended Component
@@ -50,19 +63,6 @@ class App extends Component {
     }
 
     render() {
-        const inlineStyle = {
-            backgroundColor: "green",
-            font: "inherit",
-            border: "none",
-            padding: "8px",
-            cursor: "pointer",
-            color: "white",
-            ":hover": {
-                backgroundColor: "lightgreen",
-                color: "black"
-            }
-        };
-
         let persons = null;
 
         if (this.state.showPersons) {
@@ -81,14 +81,6 @@ class App extends Component {
                     })}
                 </div>
             );
-
-            // Change style dynamically by accessing to inlineStyle object
-            inlineStyle.backgroundColor = "red";
-            inlineStyle.border = "none";
-            inlineStyle[':hover'] = {
-                backgroundColor: "lightcoral",
-                    color: "black"
-            };
         }
 
         let classes = [];
@@ -105,12 +97,11 @@ class App extends Component {
                 <div className="App">
                     <h1>Hi, I'm a React App!</h1>
                     <p className={classes.join(' ')}>This is really working!</p>
-                    {/*Ways of passing params to switchNameHandler(). Use .bind() as recommended way!*/}
-                    <button
-                        style={inlineStyle}
-                        onClick={this.togglePersonsHandler}>Switch Name
-                    </button>
-                    {/*<button onClick={() => this.switchNameHandler('Yurniel!!')}>Switch Name</button>*/}
+                    <StyledBtn
+                        alt={this.state.showPersons}
+                        onClick={this.togglePersonsHandler}
+                    >Switch Name
+                    </StyledBtn>
                     {persons}
                 </div>
             </StyleRoot>
@@ -119,51 +110,3 @@ class App extends Component {
 }
 
 export default Radium(App);
-
-/**
- * Using useState approach when not extending Component
- * This is a stateful component since it uses useState
- *
- * @param props
- * @returns {JSX.Element}
- */
-/*
-const app = props => {
-    const [personsState, setPersonsState] = useState({
-        persons: [
-            { name: 'Yurniel', age: 39 },
-            { name: 'Emi', age: 39 },
-            { name: 'Gabriel', age: 3 }
-        ],
-        otherState: 'Some other state'
-    });
-
-    // As switchNameHandler() does not take all setState data, we must include it manually,
-    // unlike when extending Component class
-    const [otherState, setOtherState] = useState('Some other value');
-
-    console.log(personsState, otherState);
-
-    const switchNameHandler = () => {
-        setPersonsState({
-            persons: [
-                { name: 'Yurniel  Lahera Villa', age: 39 },
-                { name: 'Emi Lahera Villa', age: 39 },
-                { name: 'Gabriel Lahera Villa', age: 3 }
-            ]
-        });
-    };
-
-    return (
-        <div className="App">
-            <h1>Hi, I'm a React App!</h1>
-            <button onClick={switchNameHandler}>Switch Name</button>
-            <Person name={personsState.persons[0].name} age={personsState.persons[0].age} />
-            <Person name={personsState.persons[1].name} age={personsState.persons[1].age} >My hobbies: traveling</Person>
-            <Person name={personsState.persons[2].name} age={personsState.persons[2].age} />
-        </div>
-    );
-};
-
-export default app;
-*/
