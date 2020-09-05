@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import stlClasses from './App.css';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
     // Only available when having extended Component
@@ -56,13 +57,15 @@ class App extends Component {
                 <div>
                     {this.state.persons.map((person, index) => {
                         return (
-                            <Person
-                                name={person.name}
-                                age={person.age}
-                                click={this.deletePersonHandler.bind(this, index)}
-                                key={person.id}
-                                changed={(Event) => this.nameChangedHandler(Event, person.id)}
-                            />
+                            // Placed key here because keys must be in the outer component to be mapped
+                            <ErrorBoundary key={person.id}>
+                                <Person
+                                    name={person.name}
+                                    age={person.age}
+                                    click={this.deletePersonHandler.bind(this, index)}
+                                    changed={(Event) => this.nameChangedHandler(Event, person.id)}
+                                />
+                            </ErrorBoundary>
                             )
                     })}
                 </div>
