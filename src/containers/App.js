@@ -62,6 +62,7 @@ class App extends Component {
         return (
             <div className={stlClasses.App}>
                 <Cockpit
+                    title={this.props.appTitle}
                     showPersons={this.state.showPersons}
                     persons={this.state.persons}
                     click={this.togglePersonsHandler}
