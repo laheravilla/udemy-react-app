@@ -28,8 +28,19 @@ class App extends Component {
     }
 
     // Hook / Lifecycle method
+    // One of the most important hooks if we want fetch data from DB
     componentDidMount() {
         console.log('[App.js] componentDidMount')
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log('[App.js] shouldComponentUpdate')
+        return true;
+    }
+
+    // One of the most important hooks if we want fetch data from DB
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('[App.js] componentDidUpdate')
     }
 
     // React will override property state with setState() data
