@@ -20,11 +20,14 @@ class App extends Component {
         }
     }
 
+    // Hook / Lifecycle method
+    // Sync state to props
     static getDerivedStateFromProps(props, state) {
         console.log('[App] getDerivedStateFromProps', props);
         return state;
     }
 
+    // Hook / Lifecycle method
     componentDidMount() {
         console.log('[App.js] componentDidMount')
     }
