@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import stlClasses from "./Cockpit.css";
 
 const cockpit = (props) => {
+    // It runs for every DOM update
+    useEffect(() => {
+        console.log('[Cockpit.js] useEffect');
+        // Http request...
+    });
+
     let classes = [];
     let btnClasses = "";
 
