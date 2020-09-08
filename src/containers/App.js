@@ -4,14 +4,29 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-    // Only available when having extended Component
-    state = {
-        persons: [
-            { id: 1, name: 'Yurniel', age: 39 },
-            { id: 2, name: 'Emi', age: 39 },
-            { id: 3, name: 'Gabriel', age: 3 }
-        ],
-        showPersons: false
+    constructor (props) {
+        super(props);
+        console.log('[App.js] constructor');
+
+        // In modern JS constructor are implicit
+        // If we need to set some initial state base on props, the must use constructor
+        this.state = {
+            persons: [
+                { id: 1, name: 'Yurniel', age: 39 },
+                { id: 2, name: 'Emi', age: 39 },
+                { id: 3, name: 'Gabriel', age: 3 }
+            ],
+            showPersons: false
+        }
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        console.log('[App] getDerivedStateFromProps', props);
+        return state;
+    }
+
+    componentDidMount() {
+        console.log('[App.js] componentDidMount')
     }
 
     // React will override property state with setState() data
@@ -49,6 +64,7 @@ class App extends Component {
     }
 
     render() {
+        console.log('[App.js] render')
         let persons = null;
 
         if (this.state.showPersons) {

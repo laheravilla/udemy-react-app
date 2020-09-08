@@ -10,6 +10,7 @@ import stlClasses from './Person.css'
  * @param props
  */
 const person = (props) => {
+    console.log('[Person.js] rendering...')
     return (
         <div className={stlClasses.Person}>
             <p onClick={props.click}>I'm a {props.name} and I am {props.age} years old!</p>
