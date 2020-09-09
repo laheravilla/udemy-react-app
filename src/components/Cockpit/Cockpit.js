@@ -6,7 +6,8 @@ const cockpit = (props) => {
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
         // Http request...
-    });
+        setTimeout(() => alert('Saved data to cloud!'), 1000);
+    }, [props.persons]); // Code will execute only when persons change. If [] code will execute only one time
 
     let classes = [];
     let btnClasses = "";
