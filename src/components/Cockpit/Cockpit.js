@@ -22,11 +22,11 @@ const cockpit = (props) => {
         btnClasses = stlClasses.Red;
     }
 
-    if (props.persons.length <= 2) {
+    if (props.personsLength <= 2) {
         classes.push(stlClasses.red); // classes = ['red']
     }
 
-    if (props.persons.length <= 1) {
+    if (props.personsLength <= 1) {
         classes.push(stlClasses.bold); // classes = ['red', 'bold']
     }
 
@@ -39,4 +39,9 @@ const cockpit = (props) => {
     );
 };
 
-export default cockpit;
+/**
+ * If the component renders the same result given the same props, we can wrap it in a call to React.memo
+ * for a performance boost in some cases by memorizing the result.
+ * This means that React will skip rendering the component, and reuse the last rendered result.
+ */
+export default React.memo(cockpit);
