@@ -10,8 +10,9 @@ class Persons extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         // Were forced to return true (if react must continue to update)
         // or false on the opposite case
-        console.log('[Persons.js] shouldComponentUpdate')
-        return true;
+        console.log('[Persons.js] shouldComponentUpdate');
+
+        return nextProps.persons !== this.props.persons;
     }
 
     /**
