@@ -16,29 +16,57 @@ class App extends Component {
                 { id: 2, name: 'Emi', age: 39 },
                 { id: 3, name: 'Gabriel', age: 3 }
             ],
-            showPersons: false
+            showPersons: false,
+            showCockpit: true
         }
     }
 
-    // Hook / Lifecycle method
-    // Sync state to props
+    /**
+     * Hook / Lifecycle method
+     * Sync state to props
+     * Invoked right BEFORE calling the render method
+     * It should return an object to update the state or NULL
+     *
+     * @param props
+     * @param state
+     * @returns {*}
+     */
     static getDerivedStateFromProps(props, state) {
         console.log('[App] getDerivedStateFromProps', props);
         return state;
     }
 
-    // Hook / Lifecycle method
-    // One of the most important hooks if we want fetch data from DB
+    /**
+     * Hook / Lifecycle method
+     * One of the most important hooks if we want fetch data from DB
+     * Invoked IMMEDIATELY AFTER a component is mounted (inserted into the tree)
+     */
     componentDidMount() {
         console.log('[App.js] componentDidMount')
     }
 
+    /**
+     * Let React know if a component’s output is not affected by the current change in state or props.
+     * Invoked BEFORE rendering when new props or state are being received. Defaults to true.
+     *
+     * @param nextProps
+     * @param nextState
+     * @param nextContext
+     * @returns {boolean}
+     */
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         console.log('[App.js] shouldComponentUpdate')
         return true;
     }
 
-    // One of the most important hooks if we want fetch data from DB
+    /**
+     * One of the most important hooks if we want fetch data from DB
+     * Invoked immediately AFTER updating occurs. This method is not called for the initial render.
+     *
+     * @param prevProps
+     * @param prevState
+     * @param snapshot
+     */
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('[App.js] componentDidUpdate')
     }
@@ -91,12 +119,15 @@ class App extends Component {
 
         return (
             <div className={stlClasses.App}>
-                <Cockpit
-                    title={this.props.appTitle}
-                    showPersons={this.state.showPersons}
-                    persons={this.state.persons}
-                    click={this.togglePersonsHandler}
-                />
+                <button onClick={() => this.setState({showCockpit: false})}>Remove Cockpit</button>
+                {this.state.showCockpit ? (
+                    <Cockpit
+                        title={this.props.appTitle}
+                        showPersons={this.state.showPersons}
+                        persons={this.state.persons}
+                        click={this.togglePersonsHandler}
+                    />
+                ) : null }
                 {persons}
             </div>
         );

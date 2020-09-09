@@ -14,6 +14,17 @@ class Persons extends Component {
         return true;
     }
 
+    /**
+     *  Invoked RIGHT BEFORE the most recently rendered output is committed to e.g. the DOM.
+     *  It enables the component to capture some information from the DOM (e.g. scroll position)
+     *  before it is potentially changed.
+     *  Any value returned by this lifecycle will be passed as a parameter to componentDidUpdate().
+     *
+     *
+     * @param prevProps
+     * @param prevState
+     * @returns {{message: string}}
+     */
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log('[Persons.js] getSnapshotBeforeUpdate')
         return {message: 'Snapshot!'};
@@ -22,6 +33,15 @@ class Persons extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('[Persons.js] componentDidUpdate');
         console.log(snapshot)
+    }
+
+    /**
+     * Invoked immediately before a component is unmounted and destroyed.
+     * Perform any necessary cleanup in this method, such as invalidating timers, canceling network requests,
+     * or cleaning up any subscriptions that were created in componentDidMount().
+     */
+    componentWillUnmount() {
+        console.log('[Persons.js] componentWillUnmount');
     }
 
     render() {
