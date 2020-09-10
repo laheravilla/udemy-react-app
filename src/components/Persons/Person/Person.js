@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './Person.css';
 import stlClasses from './Person.css'
 import Aux from '../../../hoc/Aux';
@@ -19,6 +19,17 @@ class Person extends Component {
         //         <p>{this.props.children}</p>
         //         <input type="text" value={this.props.name} onChange={this.props.changed}/>
         //     </div>
+        // );
+
+        // We can also use React.Fragment = Aux
+        // return (
+        //     <Fragment>
+        //         <div className={stlClasses.Person}>
+        //             <p onClick={this.props.click}>I'm a {this.props.name} and I am {this.props.age} years old!</p>
+        //             <p>{this.props.children}</p>
+        //             <input type="text" value={this.props.name} onChange={this.props.changed}/>
+        //         </div>
+        //     </Fragment>
         // );
 
         // We can also return an expression to avoid root element
