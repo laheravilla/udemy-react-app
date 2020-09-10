@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import stlClasses from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 
 class App extends Component {
     constructor (props) {
@@ -118,7 +119,7 @@ class App extends Component {
         }
 
         return (
-            <div className={stlClasses.App}>
+            <WithClass stlClasses={stlClasses.App}>
                 <button onClick={() => this.setState({showCockpit: false})}>Remove Cockpit</button>
                 {this.state.showCockpit ? (
                     <Cockpit
@@ -129,7 +130,7 @@ class App extends Component {
                     />
                 ) : null }
                 {persons}
-            </div>
+            </WithClass>
         );
     }
 }
