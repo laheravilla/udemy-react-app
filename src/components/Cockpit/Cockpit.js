@@ -1,12 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import stlClasses from "./Cockpit.css";
 
 const cockpit = (props) => {
+    // Using ref in functional components
+    const toggleBtnRef = useRef(null);
+
     // It runs for every DOM update
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
         // Http request...
-        setTimeout(() => alert('Saved data to cloud!'), 1000);
+        // setTimeout(() => alert('Saved data to cloud!'), 1000);
+
+        toggleBtnRef.current.click();
         return () => console.log('[Cockpit.js] cleanup work in useEffect');
     }, [props.persons]); // Code will execute only when persons change. If [] code will execute only one time
 
@@ -34,7 +39,9 @@ const cockpit = (props) => {
         <div className={stlClasses.Cockpit}>
             <h1>{props.title}</h1>
             <p className={classes.join(' ')}>This is really working!</p>
-            <button className={btnClasses} onClick={props.click}>Switch Name</button>
+            <button className={btnClasses} onClick={props.click} ref={toggleBtnRef}>
+                Switch Name
+            </button>
         </div>
     );
 };
