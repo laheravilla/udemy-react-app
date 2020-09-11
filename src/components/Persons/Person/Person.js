@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import './Person.css';
 import stlClasses from './Person.css'
 import Aux from '../../../hoc/Aux';
+import withClass from "../../../hoc/withClass";
 
 /**
  * This is a stateless (or presentational) component, since it does not use useState
@@ -52,4 +53,4 @@ class Person extends Component {
     }
 }
 
-export default Person;
+export default withClass(Person, stlClasses.Person);
