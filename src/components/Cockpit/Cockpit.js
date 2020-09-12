@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import stlClasses from "./Cockpit.css";
+import AuthContext from '../../context/auth-context';
 
 const cockpit = (props) => {
     // Using ref in functional components
@@ -42,7 +43,9 @@ const cockpit = (props) => {
             <button className={btnClasses} onClick={props.click} ref={toggleBtnRef}>
                 Switch Name
             </button>
-            <button onClick={props.login}>Log in</button>
+            <AuthContext.Consumer>
+                {context => <button onClick={context.login}>Log in</button>}
+            </AuthContext.Consumer>
         </div>
     );
 };
