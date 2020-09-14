@@ -1,10 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import stlClasses from "./Cockpit.css";
 import AuthContext from '../../context/auth-context';
 
 const cockpit = (props) => {
     // Using ref in functional components
     const toggleBtnRef = useRef(null);
+
+    const authContext = useContext(AuthContext);
+    console.log(authContext.authenticated);
 
     // It runs for every DOM update
     useEffect(() => {
@@ -43,9 +46,7 @@ const cockpit = (props) => {
             <button className={btnClasses} onClick={props.click} ref={toggleBtnRef}>
                 Switch Name
             </button>
-            <AuthContext.Consumer>
-                {context => <button onClick={context.login}>Log in</button>}
-            </AuthContext.Consumer>
+            <button onClick={authContext.login}>Log in</button>
         </div>
     );
 };
